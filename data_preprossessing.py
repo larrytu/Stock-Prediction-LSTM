@@ -1,6 +1,7 @@
 import os
 import pandas as pd
 from sklearn.impute import KNNImputer
+from sklearn.preprocessing import MinMaxScaler
 
 def check_missing_values_in_csv(data_folder):
     """
@@ -33,17 +34,12 @@ def check_missing_values_in_csv(data_folder):
             missing_values = df.isnull().sum()
 
             if missing_values.any():
-                print("Columns with missing values:")
-                # missing_columns = missing_values[missing_values > 0]
-                # for column, count in missing_columns.items():
-                #     print(f"  - {column}: {count} missing values")
-
                 # Apply KNN imputation to numeric columns
                 numeric_columns = df.select_dtypes(include=['number']).columns
                 if not numeric_columns.empty:
                     imputer = KNNImputer(n_neighbors=5)
                     df[numeric_columns] = imputer.fit_transform(df[numeric_columns])
-                    print(f"Missing values in numeric columns of '{file}' filled using KNN imputation.")
+                    # print(f"Missing values in numeric columns of '{file}' filled using KNN imputation.")
 
                 # Save the updated DataFrame back to the CSV file
                 df.to_csv(file_path, index=False)
@@ -60,5 +56,16 @@ def check_missing_values_in_csv(data_folder):
         except Exception as e:
             print(f"Error processing file '{file}': {e}")
 
+    dataframes = scaler(dataframes)
+
     return dataframes
 
+def scaler(dataframes):
+    scaler = MinMaxScaler()
+
+    for file_name, df in dataframes.items():
+
+        numeric_columns = df.select_dtypes(include=["number"]).columns
+        df[numeric_columns] = scaler.fit_transform(df[numeric_columns])
+        dataframes[file_name]=df
+    return dataframes
