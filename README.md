@@ -2,6 +2,16 @@
 
 **Author: Larry Tu**
 
+## Table of Contents
+1. [Executive Summary](#Executive-Summary)
+2. [Rationale](#Rationale)
+3. [Research Question](#research-question)
+4. [Data Sources](#data-sources)
+5. [Methodology](#methodology)
+6. [Results](#results)
+7. [Next Steps](#next-steps)
+---
+
 ## Executive Summary
 The purpose of this project is to utilize ML models to be able to create stock price predictions for Nvidia. As many people know, stocks are highly volatile which makes accurate predictions incredibly difficult. A person's tweet can send a stock soaring or tumbling down within hours with no warning. An ideal model would be one that studies people's sentiments from all social media platforms to see what people are talking about on the current stock, with higher importance to those with more influence. In this project, it will be a more simple model, which only analyzes historical data to make predictions. In this project, I will be engineering new features, filling in missing data and utilizing different machine learning models to make accurate predictions. This project is for potential traders to become more educated in the stock market.
 
@@ -68,7 +78,5 @@ For the ARIMA model, I tested for stationarity, which means that the mean and st
 My next steps will be to continue working on the different models to maybe analyze sentiments from social media to see how it affects stock prices.
 
 
-## Project
 
-    jupyter nbconvert --to markdown Stock_Market_Prediction_Model.ipynb
 
